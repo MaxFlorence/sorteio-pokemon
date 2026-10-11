@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PokéEncounter RPG</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
             font-family: Arial, sans-serif;
             background: #1e1e2f;
@@ -14,7 +19,6 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            margin: 0;
             padding: 20px;
         }
         .container {
@@ -48,6 +52,7 @@
             cursor: pointer;
             font-weight: bold;
             margin-top: 10px;
+            transition: background 0.2s;
         }
         button:hover {
             background: #2a3594;
@@ -64,6 +69,7 @@
             width: 130px;
             height: 130px;
             object-fit: contain;
+            margin: 0 auto;
         }
         .badge {
             display: inline-block;
@@ -71,7 +77,8 @@
             border-radius: 15px;
             font-size: 12px;
             font-weight: bold;
-            margin-top: 5px;
+            margin-top: 8px;
+            margin-right: 4px;
         }
         .comum { background: #717171; }
         .incomum { background: #28a745; }
@@ -118,10 +125,10 @@
             </select>
         </div>
 
-        <button onclick="sortear()">Procurar Pokémon!</button>
+        <button type="button" id="btnRoll" onclick="sortear()">Procurar Pokémon!</button>
 
         <div id="resultCard" class="result-card">
-            <img id="pokeImg" class="pokemon-img" src="" alt="Pokémon">
+            <img id="pokeImg" class="pokemon-img" src="" alt="Pokémon" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png';">
             <h3 id="pokeName">---</h3>
             <div>
                 <span id="pokeRarity" class="badge">---</span>
@@ -158,3 +165,33 @@
                 "Raro": [
                     { name: "Smoochum", srText: "2", srVal: 2, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/238.png" },
                     { name: "Sneasel (Hisui)", srText: "4", srVal: 4, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10235.png" },
+                    { name: "Darumaka (Galar)", srText: "1/2", srVal: 0.5, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10173.png" },
+                    { name: "Mime Jr.", srText: "1", srVal: 1, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/439.png" },
+                    { name: "Minior", srText: "4", srVal: 4, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/774.png" },
+                    { name: "Cryogonal", srText: "11", srVal: 11, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/615.png" }
+                ],
+                "Muito Raro": [
+                    { name: "Delibird", srText: "1", srVal: 1, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/225.png" },
+                    { name: "Snover", srText: "1", srVal: 1, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/459.png" },
+                    { name: "Lapras", srText: "10", srVal: 10, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png" },
+                    { name: "Castform", srText: "5", srVal: 5, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/351.png" },
+                    { name: "Frigibax", srText: "1", srVal: 1, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/996.png" },
+                    { name: "Piplup", srText: "1/2", srVal: 0.5, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/393.png" }
+                ]
+            }
+        };
+
+        function getMaxSR(level) {
+            if (level <= 2) return 2;
+            if (level <= 5) return 5;
+            if (level <= 7) return 8;
+            if (level <= 10) return 10;
+            if (level <= 13) return 12;
+            if (level <= 16) return 14;
+            return 15;
+        }
+
+        function sortear() {
+            try {
+                const levelSelect = document.getElementById('trainerLevel');
+                const level = parseInt(level
