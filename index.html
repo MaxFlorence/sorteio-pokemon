@@ -70,6 +70,7 @@
             height: 130px;
             object-fit: contain;
             margin: 0 auto;
+            display: block;
         }
         .badge {
             display: inline-block;
@@ -107,55 +108,4 @@
                 <option value="10">Nível 10 (Max SR 10)</option>
                 <option value="11">Nível 11 (Max SR 12)</option>
                 <option value="12">Nível 12 (Max SR 12)</option>
-                <option value="13">Nível 13 (Max SR 12)</option>
-                <option value="14">Nível 14 (Max SR 14)</option>
-                <option value="15">Nível 15 (Max SR 14)</option>
-                <option value="16">Nível 16 (Max SR 14)</option>
-                <option value="17">Nível 17 (Max SR 15)</option>
-                <option value="18">Nível 18 (Max SR 15)</option>
-                <option value="19">Nível 19 (Max SR 15)</option>
-                <option value="20">Nível 20 (Max SR 15)</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="environment">Ambiente:</label>
-            <select id="environment">
-                <option value="artico">❄️ Ártico</option>
-            </select>
-        </div>
-
-        <button type="button" id="btnRoll" onclick="sortear()">Procurar Pokémon!</button>
-
-        <div id="resultCard" class="result-card">
-            <img id="pokeImg" class="pokemon-img" src="" alt="Pokémon" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png';">
-            <h3 id="pokeName">---</h3>
-            <div>
-                <span id="pokeRarity" class="badge">---</span>
-                <span id="pokeSR" class="badge sr-badge">SR ---</span>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const database = {
-            artico: {
-                "Comum": [
-                    { name: "Cubchoo", srText: "1/4", srVal: 0.25, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/613.png" },
-                    { name: "Seel", srText: "1/2", srVal: 0.5, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/86.png" },
-                    { name: "Spheal", srText: "1/4", srVal: 0.25, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/363.png" },
-                    { name: "Vanillite", srText: "1/2", srVal: 0.5, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/582.png" },
-                    { name: "Swinub", srText: "1/4", srVal: 0.25, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/220.png" },
-                    { name: "Snom", srText: "1/8", srVal: 0.125, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/872.png" },
-                    { name: "Scatterbug", srText: "1/8", srVal: 0.125, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/664.png" }
-                ],
-                "Incomum": [
-                    { name: "Bergmite", srText: "1/4", srVal: 0.25, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/712.png" },
-                    { name: "Stantler", srText: "5", srVal: 5, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/234.png" },
-                    { name: "Shellder", srText: "1/2", srVal: 0.5, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/90.png" },
-                    { name: "Snorunt", srText: "1/4", srVal: 0.25, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/361.png" },
-                    { name: "Crabrawler", srText: "1", srVal: 1, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/739.png" },
-                    { name: "Deerling", srText: "2", srVal: 2, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/585.png" },
-                    { name: "Sneasel", srText: "4", srVal: 4, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/215.png" },
-                    { name: "Eiscue", srText: "6", srVal: 6, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/875.png" },
-                    { name: "Sandshrew (Alola)", srText
+                <option value="13">Nível 13 (Max SR 1
