@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PokéRarity - Sorteio de Encounters</title>
+    <title>PokéEncounter - Sorteio por Ecossistema</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -25,12 +25,12 @@
 
         header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         h1 {
             font-family: 'Press Start 2P', cursive;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #ffcb05;
             text-shadow: 3px 3px #3b4cca;
             margin-bottom: 10px;
@@ -38,7 +38,7 @@
 
         p.subtitle {
             color: #aaa;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .container {
@@ -47,7 +47,7 @@
             border-radius: 15px;
             padding: 25px;
             width: 100%;
-            max-width: 500px;
+            max-width: 520px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             backdrop-filter: blur(4px);
         }
@@ -71,7 +71,7 @@
             border: 1px solid #444;
             background: #1a1a24;
             color: #fff;
-            font-size: 1rem;
+            font-size: 0.95rem;
             outline: none;
             transition: border-color 0.3s;
         }
@@ -102,7 +102,7 @@
             transform: scale(0.98);
         }
 
-        /* Resultado */
+        /* Cartão de Resultado */
         .result-card {
             margin-top: 25px;
             background: rgba(0, 0, 0, 0.3);
@@ -119,8 +119,8 @@
         }
 
         .pokemon-img {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             object-fit: contain;
             margin: 10px auto;
             filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
@@ -129,122 +129,4 @@
         .pokemon-name {
             font-size: 1.3rem;
             font-weight: 600;
-            text-transform: capitalize;
-            margin-bottom: 5px;
-        }
-
-        .rarity-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 5px;
-        }
-
-        /* Cores de Raridade */
-        .rarity-comum { background: #717171; color: #fff; }
-        .rarity-incomum { background: #228B22; color: #fff; }
-        .rarity-raro { background: #1E90FF; color: #fff; }
-        .rarity-epico { background: #9370DB; color: #fff; }
-        .rarity-lendario { background: #FFD700; color: #000; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>PokéEncounter</h1>
-        <p class="subtitle">Descubra qual Pokémon habita esta área!</p>
-    </header>
-
-    <div class="container">
-        <div class="form-group">
-            <label for="environment">Selecione o Ambiente:</label>
-            <select id="environment">
-                <option value="floresta">Florestas e Bosques</option>
-                <option value="caverna">Cavernas Escuras</option>
-                <option value="praia">Praias e Costa</option>
-            </select>
-        </div>
-
-        <button onclick="sortearPokemon()">Procurar Pokémon!</button>
-
-        <div id="resultCard" class="result-card">
-            <p style="font-size: 0.85rem; color: #bbb; margin-bottom: 5px;">Um Pokémon selvagem apareceu!</p>
-            <img id="pokeImg" class="pokemon-img" src="" alt="Pokémon">
-            <div id="pokeName" class="pokemon-name">---</div>
-            <div id="pokeRarity" class="rarity-badge">---</div>
-        </div>
-    </div>
-
-    <script>
-        // Banco de Dados simulado por ambiente com pesos de raridade
-        // Quanto menor o peso, mais raro é de aparecer.
-        const database = {
-            floresta: [
-                { name: "Caterpie", rarity: "Comum", weight: 50, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png" },
-                { name: "Bulbasaur", rarity: "Raro", weight: 15, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" },
-                { name: "Pikachu", rarity: "Incomum", weight: 25, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" },
-                { name: "Scyther", rarity: "Épico", weight: 8, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/123.png" },
-                { name: "Celebi", rarity: "Lendário", weight: 2, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/251.png" }
-            ],
-            caverna: [
-                { name: "Zubat", rarity: "Comum", weight: 50, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/41.png" },
-                { name: "Geodude", rarity: "Comum", weight: 40, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png" },
-                { name: "Onix", rarity: "Raro", weight: 15, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png" },
-                { name: "Larvitar", rarity: "Épico", weight: 8, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/246.png" },
-                { name: "Mewtwo", rarity: "Lendário", weight: 1, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png" }
-            ],
-            praia: [
-                { name: "Magikarp", rarity: "Comum", weight: 50, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/129.png" },
-                { name: "Tentacool", rarity: "Comum", weight: 40, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png" },
-                { name: "Squirtle", rarity: "Raro", weight: 15, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" },
-                { name: "Lapras", rarity: "Épico", weight: 6, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png" },
-                { name: "Kyogre", rarity: "Lendário", weight: 1, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/382.png" }
-            ]
-        };
-
-        function sortearPokemon() {
-            const ambienteSelecionado = document.getElementById('environment').value;
-            const listaPokemons = database[ambienteSelecionado];
-
-            // Soma total dos pesos para probabilidade ponderada
-            const pesoTotal = listaPokemons.reduce((total, poke) => total + poke.weight, 0);
-            let sorteioAleatorio = Math.random() * pesoTotal;
-
-            let pokemonEscolhido = listaPokemons[0];
-
-            for (let poke of listaPokemons) {
-                if (sorteioAleatorio < poke.weight) {
-                    pokemonEscolhido = poke;
-                    break;
-                }
-                sorteioAleatorio -= poke.weight;
-            }
-
-            // Exibir na tela
-            const resultCard = document.getElementById('resultCard');
-            const pokeImg = document.getElementById('pokeImg');
-            const pokeName = document.getElementById('pokeName');
-            const pokeRarity = document.getElementById('pokeRarity');
-
-            pokeImg.src = pokemonEscolhido.img;
-            pokeName.textContent = pokemonEscolhido.name;
-            pokeRarity.textContent = pokemonEscolhido.rarity;
-            
-            // Atualizar classes CSS da raridade
-            pokeRarity.className = `rarity-badge rarity-${pokemonEscolhido.rarity.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")}`;
-
-            resultCard.classList.remove('active');
-            void resultCard.offsetWidth; // Reflow para reiniciar a animação
-            resultCard.classList.add('active');
-        }
-    </script>
-</body>
-</html>
+            text-transform
