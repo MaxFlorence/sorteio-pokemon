@@ -224,4 +224,35 @@
                     }
                 }
 
-                if (valid
+                if (validos.length === 0) {
+                    alert("Nenhum Pokémon disponível para este nível.");
+                    return;
+                }
+
+                var escolhido = validos[Math.floor(Math.random() * validos.length)];
+
+                var pokeImg = document.getElementById('pokeImg');
+                pokeImg.onerror = function() {
+                    this.onerror = null;
+                    this.src = FALLBACK_IMG;
+                };
+
+                document.getElementById('pokeName').textContent = escolhido.name;
+                
+                var rarityEl = document.getElementById('pokeRarity');
+                rarityEl.textContent = escolhido.raridade;
+                rarityEl.className = "badge " + escolhido.raridade.toLowerCase().replace(" ", "-");
+
+                document.getElementById('pokeSR').textContent = "SR " + escolhido.srText;
+                
+                pokeImg.src = escolhido.img;
+
+                document.getElementById('resultCard').style.display = "block";
+            } catch (e) {
+                console.error("Erro no sorteio:", e);
+                alert("Ocorreu um erro no sorteio. Tente novamente.");
+            }
+        }
+    </script>
+</body>
+</html>
