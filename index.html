@@ -129,7 +129,7 @@
         <button type="button" onclick="sortear()">Procurar Pokémon!</button>
 
         <div id="resultCard" class="result-card">
-            <img id="pokeImg" class="pokemon-img" src="" alt="Pokémon">
+            <img id="pokeImg" class="pokemon-img" src="" alt="Pokémon" onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png';">
             <h3 id="pokeName">---</h3>
             <div>
                 <span id="pokeRarity" class="badge">---</span>
@@ -139,6 +139,23 @@
     </div>
 
     <script>
-        const FALLBACK_IMG = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png";
-
         const database = {
+            artico: {
+                "Comum": [
+                    { name: "Cubchoo", srText: "1/4", srVal: 0.25, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/613.png" },
+                    { name: "Seel", srText: "1/2", srVal: 0.5, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/86.png" },
+                    { name: "Spheal", srText: "1/4", srVal: 0.25, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/363.png" },
+                    { name: "Vanillite", srText: "1/2", srVal: 0.5, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/582.png" },
+                    { name: "Swinub", srText: "1/4", srVal: 0.25, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/220.png" },
+                    { name: "Snom", srText: "1/8", srVal: 0.125, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/872.png" },
+                    { name: "Scatterbug", srText: "1/8", srVal: 0.125, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/664.png" }
+                ],
+                "Incomum": [
+                    { name: "Bergmite", srText: "1/4", srVal: 0.25, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/712.png" },
+                    { name: "Stantler", srText: "5", srVal: 5, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/234.png" },
+                    { name: "Shellder", srText: "1/2", srVal: 0.5, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/90.png" },
+                    { name: "Snorunt", srText: "1/4", srVal: 0.25, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/361.png" },
+                    { name: "Crabrawler", srText: "1", srVal: 1, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/739.png" },
+                    { name: "Deerling (Inverno)", srText: "2", srVal: 2, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/585-winter.png" },
+                    { name: "Sneasel", srText: "4", srVal: 4, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/215.png" },
+                    { name: "Eiscue", srText: "6", srVal: 6, img: "
