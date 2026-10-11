@@ -108,4 +108,37 @@
                 <option value="10">Nível 10 (Max SR 10)</option>
                 <option value="11">Nível 11 (Max SR 12)</option>
                 <option value="12">Nível 12 (Max SR 12)</option>
-                <option value="13">Nível 13 (Max SR 1
+                <option value="13">Nível 13 (Max SR 12)</option>
+                <option value="14">Nível 14 (Max SR 14)</option>
+                <option value="15">Nível 15 (Max SR 14)</option>
+                <option value="16">Nível 16 (Max SR 14)</option>
+                <option value="17">Nível 17 (Max SR 15)</option>
+                <option value="18">Nível 18 (Max SR 15)</option>
+                <option value="19">Nível 19 (Max SR 15)</option>
+                <option value="20">Nível 20 (Max SR 15)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="environment">Selecione o Ambiente / Região:</label>
+            <select id="environment">
+                <option value="artico">❄️ Ártico</option>
+            </select>
+        </div>
+
+        <button type="button" id="btnRoll">Procurar Pokémon!</button>
+
+        <div id="resultCard" class="result-card">
+            <img id="pokeImg" class="pokemon-img" src="" alt="Pokémon">
+            <h3 id="pokeName">---</h3>
+            <div>
+                <span id="pokeRarity" class="badge">---</span>
+                <span id="pokeSR" class="badge sr-badge">SR ---</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const FALLBACK_IMG = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png";
+
+        const database = {
