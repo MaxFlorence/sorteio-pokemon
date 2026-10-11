@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PokéEncounter - Sorteio por Ecossistema</title>
+    <title>PokéEncounter - Kanto a Paldea (Massivo)</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -30,7 +30,7 @@
 
         h1 {
             font-family: 'Press Start 2P', cursive;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #ffcb05;
             text-shadow: 3px 3px #3b4cca;
             margin-bottom: 10px;
@@ -159,7 +159,7 @@
 
     <header>
         <h1>PokéEncounter</h1>
-        <p class="subtitle">Sorteador por Áreas e Raridades (Kanto a Paldea)</p>
+        <p class="subtitle">Sorteador por Áreas e Raridades (Massivo - Kanto a Paldea)</p>
     </header>
 
     <div class="container">
@@ -169,7 +169,7 @@
                 <option value="artico">❄️ Ártico</option>
                 <option value="assombrados">👻 Assombrados</option>
                 <option value="caverna">🦇 Caverna</option>
-                <option value="deserto">Cacto Deserto</option>
+                <option value="deserto">🌵 Deserto</option>
                 <option value="desfiladeiro">⛰️ Desfiladeiro</option>
                 <option value="floresta">🌲 Florestas e Bosques</option>
                 <option value="mar_aberto">🌊 Mar Aberto</option>
@@ -195,7 +195,6 @@
     </div>
 
     <script>
-        // Pesos das 4 Raridades (Total 100%)
         const RARITY_CHANCES = {
             "Comum": 50,
             "Incomum": 30,
@@ -203,100 +202,99 @@
             "Muito Raro": 5
         };
 
-        // Função auxiliar para montar links de sprites oficiais da PokéAPI por ID
         const getSprite = (id) => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 
-        // Banco de Dados das 15 Áreas (Apenas Formas Base e Sem Evolução)
+        // Banco de Dados Massivo (Apenas Formas Base / Sem Evolução - Kanto a Paldea)
         const database = {
             artico: {
-                "Comum": [{ id: 871, name: "Snom" }, { id: 225, name: "Delibird" }, { id: 363, name: "Spheal" }],
-                "Incomum": [{ id: 361, name: "Snorunt" }, { id: 459, name: "Snover" }, { id: 883, name: "Arctovish" }],
-                "Raro": [{ id: 131, name: "Lapras" }, { id: 554, name: "Darumaka (Galarian)" }, { id: 975, name: "Cetoddle" }],
-                "Muito Raro": [{ id: 705, name: "Sliggoo (Hisuian)" }, { id: 215, name: "Sneasel" }]
+                "Comum": [{ id: 871, name: "Snom" }, { id: 225, name: "Delibird" }, { id: 363, name: "Spheal" }, { id: 582, name: "Vanillite" }, { id: 613, name: "Cubchoo" }],
+                "Incomum": [{ id: 361, name: "Snorunt" }, { id: 459, name: "Snover" }, { id: 875, name: "Eiscue" }, { id: 883, name: "Arctovish" }],
+                "Raro": [{ id: 131, name: "Lapras" }, { id: 554, name: "Darumaka (Galar)" }, { id: 975, name: "Cetoddle" }, { id: 1020, name: "Iron Bundle" }],
+                "Muito Raro": [{ id: 215, name: "Sneasel" }, { id: 996, name: "Frigibax" }]
             },
             assombrados: {
-                "Comum": [{ id: 92, name: "Gastly" }, { id: 200, name: "Misdreavus" }, { id: 353, name: "Shuppet" }],
-                "Incomum": [{ id: 355, name: "Duskull" }, { id: 607, name: "Litwick" }, { id: 708, name: "Phantump" }],
-                "Raro": [{ id: 302, name: "Sableye" }, { id: 778, name: "Mimikyu" }, { id: 935, name: "Charcadet" }],
-                "Muito Raro": [{ id: 479, name: "Rotom" }, { id: 562, name: "Yamask" }]
+                "Comum": [{ id: 92, name: "Gastly" }, { id: 200, name: "Misdreavus" }, { id: 353, name: "Shuppet" }, { id: 355, name: "Duskull" }],
+                "Incomum": [{ id: 607, name: "Litwick" }, { id: 708, name: "Phantump" }, { id: 769, name: "Sandygast" }, { id: 885, name: "Dreepy" }],
+                "Raro": [{ id: 302, name: "Sableye" }, { id: 778, name: "Mimikyu" }, { id: 935, name: "Charcadet" }, { id: 854, name: "Sinistea" }],
+                "Muito Raro": [{ id: 479, name: "Rotom" }, { id: 562, name: "Yamask" }, { id: 977, name: "Toedscruel" }]
             },
             caverna: {
-                "Comum": [{ id: 41, name: "Zubat" }, { id: 74, name: "Geodude" }, { id: 524, name: "Rogonrola" }],
-                "Incomum": [{ id: 66, name: "Machop" }, { id: 527, name: "Woobat" }, { id: 856, name: "Hatenna" }],
-                "Raro": [{ id: 95, name: "Onix" }, { id: 303, name: "Mawile" }, { id: 703, name: "Carbink" }],
-                "Muito Raro": [{ id: 246, name: "Larvitar" }, { id: 633, name: "Deino" }]
+                "Comum": [{ id: 41, name: "Zubat" }, { id: 74, name: "Geodude" }, { id: 524, name: "Roggenrola" }, { id: 527, name: "Woobat" }],
+                "Incomum": [{ id: 66, name: "Machop" }, { id: 304, name: "Aron" }, { id: 599, name: "Klink" }, { id: 856, name: "Hatenna" }],
+                "Raro": [{ id: 95, name: "Onix" }, { id: 303, name: "Mawile" }, { id: 703, name: "Carbink" }, { id: 879, name: "Copperajah" }],
+                "Muito Raro": [{ id: 246, name: "Larvitar" }, { id: 633, name: "Deino" }, { id: 443, name: "Gible" }]
             },
             deserto: {
-                "Comum": [{ id: 27, name: "Sandshrew" }, { id: 328, name: "Trapinch" }, { id: 551, name: "Sandile" }],
-                "Incomum": [{ id: 331, name: "Cacnea" }, { id: 556, name: "Maractus" }, { id: 948, name: "Toedscool" }],
-                "Raro": [{ id: 449, name: "Hippopotas" }, { id: 749, name: "Mudbray" }, { id: 944, name: "Shroodle" }],
-                "Muito Raro": [{ id: 329, name: "Vibrava" }, { id: 838, name: "Carkol" }]
+                "Comum": [{ id: 27, name: "Sandshrew" }, { id: 328, name: "Trapinch" }, { id: 551, name: "Sandile" }, { id: 331, name: "Cacnea" }],
+                "Incomum": [{ id: 556, name: "Maractus" }, { id: 449, name: "Hippopotas" }, { id: 749, name: "Mudbray" }, { id: 948, name: "Toedscool" }],
+                "Raro": [{ id: 632, name: "Durant" }, { id: 631, name: "Heatmor" }, { id: 944, name: "Shroodle" }],
+                "Muito Raro": [{ id: 329, name: "Vibrava" }, { id: 838, name: "Carkol" }, { id: 343, name: "Baltoy" }]
             },
             desfiladeiro: {
-                "Comum": [{ id: 21, name: "Spearow" }, { id: 207, name: "Gligar" }, { id: 627, name: "Rufflet" }],
-                "Incomum": [{ id: 227, name: "Skarmory" }, { id: 566, name: "Archen" }, { id: 747, name: "Mareanie" }],
+                "Comum": [{ id: 21, name: "Spearow" }, { id: 207, name: "Gligar" }, { id: 627, name: "Rufflet" }, { id: 629, name: "Vullaby" }],
+                "Incomum": [{ id: 227, name: "Skarmory" }, { id: 566, name: "Archen" }, { id: 564, name: "Tirtouga" }, { id: 747, name: "Mareanie" }],
                 "Raro": [{ id: 621, name: "Druddigon" }, { id: 774, name: "Minior" }, { id: 957, name: "Tinkatink" }],
-                "Muito Raro": [{ id: 246, name: "Larvitar" }, { id: 996, name: "Frigibax" }]
+                "Muito Raro": [{ id: 246, name: "Larvitar" }, { id: 996, name: "Frigibax" }, { id: 371, name: "Bagon" }]
             },
             floresta: {
-                "Comum": [{ id: 10, name: "Caterpie" }, { id: 13, name: "Weedle" }, { id: 265, name: "Wurmple" }, { id: 917, name: "Tarountula" }],
-                "Incomum": [{ id: 1, name: "Bulbasaur" }, { id: 43, name: "Oddish" }, { id: 152, name: "Chikorita" }, { id: 906, name: "Sprigatito" }],
-                "Raro": [{ id: 123, name: "Scyther" }, { id: 127, name: "Pinsir" }, { id: 214, name: "Heracross" }],
-                "Muito Raro": [{ id: 570, name: "Zorua" }, { id: 781, name: "Dhelmise" }]
+                "Comum": [{ id: 10, name: "Caterpie" }, { id: 13, name: "Weedle" }, { id: 265, name: "Wurmple" }, { id: 917, name: "Tarountula" }, { id: 167, name: "Spinarak" }],
+                "Incomum": [{ id: 1, name: "Bulbasaur" }, { id: 43, name: "Oddish" }, { id: 152, name: "Chikorita" }, { id: 906, name: "Sprigatito" }, { id: 204, name: "Pineco" }],
+                "Raro": [{ id: 123, name: "Scyther" }, { id: 127, name: "Pinsir" }, { id: 214, name: "Heracross" }, { id: 540, name: "Sewaddle" }],
+                "Muito Raro": [{ id: 570, name: "Zorua" }, { id: 781, name: "Dhelmise" }, { id: 251, name: "Celebi" }]
             },
             mar_aberto: {
-                "Comum": [{ id: 72, name: "Tentacool" }, { id: 226, name: "Mantine" }, { id: 320, name: "Wailmer" }],
-                "Incomum": [{ id: 116, name: "Horsea" }, { id: 318, name: "Carvanha" }, { id: 846, name: "Arrokuda" }],
-                "Raro": [{ id: 131, name: "Lapras" }, { id: 222, name: "Corsola" }, { id: 976, name: "Veluza" }],
-                "Muito Raro": [{ id: 369, name: "Relicanth" }, { id: 771, name: "Pyukumuku" }]
+                "Comum": [{ id: 72, name: "Tentacool" }, { id: 226, name: "Mantine" }, { id: 320, name: "Wailmer" }, { id: 594, name: "Alomomola" }],
+                "Incomum": [{ id: 116, name: "Horsea" }, { id: 318, name: "Carvanha" }, { id: 846, name: "Arrokuda" }, { id: 726, name: "Torracat" }],
+                "Raro": [{ id: 131, name: "Lapras" }, { id: 222, name: "Corsola" }, { id: 976, name: "Veluza" }, { id: 370, name: "Luvdisc" }],
+                "Muito Raro": [{ id: 369, name: "Relicanth" }, { id: 771, name: "Pyukumuku" }, { id: 746, name: "Wishiwashi" }]
             },
             montanhas: {
-                "Comum": [{ id: 66, name: "Machop" }, { id: 304, name: "Aron" }, { id: 532, name: "Timburr" }],
-                "Incomum": [{ id: 215, name: "Sneasel" }, { id: 447, name: "Riolu" }, { id: 759, name: "Stufful" }],
-                "Raro": [{ id: 568, name: "Trubbish" }, { id: 701, name: "Hawlucha" }, { id: 960, name: "Wigglett" }],
-                "Muito Raro": [{ id: 633, name: "Deino" }, { id: 782, name: "Jangmo-o" }]
+                "Comum": [{ id: 66, name: "Machop" }, { id: 304, name: "Aron" }, { id: 532, name: "Timburr" }, { id: 759, name: "Stufful" }],
+                "Incomum": [{ id: 215, name: "Sneasel" }, { id: 447, name: "Riolu" }, { id: 701, name: "Hawlucha" }, { id: 921, name: "Pawmi" }],
+                "Raro": [{ id: 568, name: "Trubbish" }, { id: 960, name: "Wigglett" }, { id: 870, name: "Falinks" }],
+                "Muito Raro": [{ id: 633, name: "Deino" }, { id: 782, name: "Jangmo-o" }, { id: 371, name: "Bagon" }]
             },
             pantano: {
-                "Comum": [{ id: 194, name: "Wooper" }, { id: 258, name: "Mudkip" }, { id: 453, name: "Croagunk" }],
-                "Incomum": [{ id: 270, name: "Lotad" }, { id: 618, name: "Stunfisk" }, { id: 751, name: "Dewpider" }],
-                "Raro": [{ id: 357, name: "Tropius" }, { id: 688, name: "Binacle" }, { id: 848, name: "Toxel" }],
-                "Muito Raro": [{ id: 704, name: "Goomy" }, { id: 921, name: "Pawmi" }]
+                "Comum": [{ id: 194, name: "Wooper" }, { id: 258, name: "Mudkip" }, { id: 453, name: "Croagunk" }, { id: 315, name: "Roselia" }],
+                "Incomum": [{ id: 270, name: "Lotad" }, { id: 618, name: "Stunfisk" }, { id: 751, name: "Dewpider" }, { id: 848, name: "Toxel" }],
+                "Raro": [{ id: 357, name: "Tropius" }, { id: 688, name: "Binacle" }, { id: 585, name: "Deerling" }],
+                "Muito Raro": [{ id: 704, name: "Goomy" }, { id: 690, name: "Skrelp" }]
             },
             pesca: {
-                "Comum": [{ id: 129, name: "Magikarp" }, { id: 118, name: "Goldeen" }, { id: 341, name: "Corphish" }],
-                "Incomum": [{ id: 60, name: "Poliwag" }, { id: 223, name: "Remoraid" }, { id: 339, name: "Barboach" }],
-                "Raro": [{ id: 90, name: "Shellder" }, { id: 349, name: "Feebas" }, { id: 846, name: "Arrokuda" }],
-                "Muito Raro": [{ id: 211, name: "Qwilfish" }, { id: 692, name: "Clauncher" }]
+                "Comum": [{ id: 129, name: "Magikarp" }, { id: 118, name: "Goldeen" }, { id: 341, name: "Corphish" }, { id: 318, name: "Carvanha" }],
+                "Incomum": [{ id: 60, name: "Poliwag" }, { id: 223, name: "Remoraid" }, { id: 339, name: "Barboach" }, { id: 550, name: "Basculin" }],
+                "Raro": [{ id: 90, name: "Shellder" }, { id: 349, name: "Feebas" }, { id: 846, name: "Arrokuda" }, { id: 456, name: "Finneon" }],
+                "Muito Raro": [{ id: 211, name: "Qwilfish" }, { id: 692, name: "Clauncher" }, { id: 963, name: "Finizen" }]
             },
             planicie: {
-                "Comum": [{ id: 19, name: "Rattata" }, { id: 161, name: "Sentret" }, { id: 399, name: "Bidoof" }, { id: 915, name: "Lechonk" }],
-                "Incomum": [{ id: 25, name: "Pikachu" }, { id: 133, name: "Eevee" }, { id: 179, name: "Mareep" }, { id: 831, name: "Wooloo" }],
-                "Raro": [{ id: 128, name: "Tauros" }, { id: 241, name: "Miltank" }, { id: 203, name: "Girafarig" }],
-                "Muito Raro": [{ id: 206, name: "Dunsparce" }, { id: 235, name: "Smeargle" }]
+                "Comum": [{ id: 19, name: "Rattata" }, { id: 161, name: "Sentret" }, { id: 399, name: "Bidoof" }, { id: 915, name: "Lechonk" }, { id: 133, name: "Eevee" }],
+                "Incomum": [{ id: 25, name: "Pikachu" }, { id: 179, name: "Mareep" }, { id: 831, name: "Wooloo" }, { id: 734, name: "Yungoos" }],
+                "Raro": [{ id: 128, name: "Tauros" }, { id: 241, name: "Miltank" }, { id: 203, name: "Girafarig" }, { id: 626, name: "Bouffalant" }],
+                "Muito Raro": [{ id: 206, name: "Dunsparce" }, { id: 235, name: "Smeargle" }, { id: 775, name: "Komala" }]
             },
             praia: {
-                "Comum": [{ id: 98, name: "Krabby" }, { id: 278, name: "Wingull" }, { id: 759, name: "Stufful" }],
-                "Incomum": [{ id: 54, name: "Psyduck" }, { id: 79, name: "Slowpoke" }, { id: 769, name: "Sandygast" }],
-                "Raro": [{ id: 7, name: "Squirtle" }, { id: 120, name: "Staryu" }, { id: 960, name: "Wigglett" }],
-                "Muito Raro": [{ id: 138, name: "Omanyte" }, { id: 140, name: "Kabuto" }]
+                "Comum": [{ id: 98, name: "Krabby" }, { id: 278, name: "Wingull" }, { id: 759, name: "Stufful" }, { id: 222, name: "Corsola" }],
+                "Incomum": [{ id: 54, name: "Psyduck" }, { id: 79, name: "Slowpoke" }, { id: 769, name: "Sandygast" }, { id: 851, name: "Centiskorch" }],
+                "Raro": [{ id: 7, name: "Squirtle" }, { id: 120, name: "Staryu" }, { id: 960, name: "Wigglett" }, { id: 223, name: "Remoraid" }],
+                "Muito Raro": [{ id: 138, name: "Omanyte" }, { id: 140, name: "Kabuto" }, { id: 347, name: "Anorith" }]
             },
             rios_lagos: {
-                "Comum": [{ id: 54, name: "Psyduck" }, { id: 194, name: "Wooper" }, { id: 418, name: "Buizel" }],
-                "Incomum": [{ id: 60, name: "Poliwag" }, { id: 158, name: "Totodile" }, { id: 535, name: "Tympole" }, { id: 912, name: "Quaxly" }],
+                "Comum": [{ id: 54, name: "Psyduck" }, { id: 194, name: "Wooper" }, { id: 418, name: "Buizel" }, { id: 60, name: "Poliwag" }],
+                "Incomum": [{ id: 158, name: "Totodile" }, { id: 535, name: "Tympole" }, { id: 912, name: "Quaxly" }, { id: 393, name: "Piplup" }],
                 "Raro": [{ id: 147, name: "Dratini" }, { id: 692, name: "Clauncher" }, { id: 843, name: "Silicobra" }],
-                "Muito Raro": [{ id: 349, name: "Feebas" }, { id: 704, name: "Goomy" }]
+                "Muito Raro": [{ id: 349, name: "Feebas" }, { id: 704, name: "Goomy" }, { id: 151, name: "Mew" }]
             },
             urbano: {
-                "Comum": [{ id: 52, name: "Meowth" }, { id: 81, name: "Magnemite" }, { id: 568, name: "Trubbish" }],
+                "Comum": [{ id: 52, name: "Meowth" }, { id: 81, name: "Magnemite" }, { id: 568, name: "Trubbish" }, { id: 572, name: "Minccino" }],
                 "Incomum": [{ id: 88, name: "Grimer" }, { id: 100, name: "Voltorb" }, { id: 431, name: "Glameow" }, { id: 848, name: "Toxel" }],
-                "Raro": [{ id: 137, name: "Porygon" }, { id: 441, name: "Chatot" }, { id: 854, name: "Sinistea" }],
-                "Muito Raro": [{ id: 440, name: "Happiny" }, { id: 479, name: "Rotom" }]
+                "Raro": [{ id: 137, name: "Porygon" }, { id: 441, name: "Chatot" }, { id: 854, name: "Sinistea" }, { id: 707, name: "Klefki" }],
+                "Muito Raro": [{ id: 440, name: "Happiny" }, { id: 479, name: "Rotom" }, { id: 801, name: "Magearna" }]
             },
             vulcao: {
-                "Comum": [{ id: 218, name: "Slugma" }, { id: 322, name: "Numel" }, { id: 837, name: "Rolycoly" }],
+                "Comum": [{ id: 218, name: "Slugma" }, { id: 322, name: "Numel" }, { id: 837, name: "Rolycoly" }, { id: 219, name: "Magcargo" }],
                 "Incomum": [{ id: 4, name: "Charmander" }, { id: 155, name: "Cyndaquil" }, { id: 255, name: "Torchic" }, { id: 909, name: "Fuecoco" }],
-                "Raro": [{ id: 126, name: "Magmar" }, { id: 324, name: "Torkoal" }, { id: 757, name: "Salandit" }],
-                "Muito Raro": [{ id: 631, name: "Heatmor" }, { id: 935, name: "Charcadet" }]
+                "Raro": [{ id: 126, name: "Magmar" }, { id: 324, name: "Torkoal" }, { id: 757, name: "Salandit" }, { id: 661, name: "Fletchinder" }],
+                "Muito Raro": [{ id: 631, name: "Heatmor" }, { id: 935, name: "Charcadet" }, { id: 485, name: "Heatran" }]
             }
         };
 
@@ -304,7 +302,6 @@
             const ambiente = document.getElementById('environment').value;
             const ambienteAtual = database[ambiente];
 
-            // 1. Roll da Raridade
             const roll = Math.random() * 100;
             let raridadeSorteada = "Comum";
 
@@ -318,17 +315,14 @@
                 raridadeSorteada = "Comum";
             }
 
-            // 2. Busca lista da raridade no ambiente
             let listaDaRaridade = ambienteAtual[raridadeSorteada];
             if (!listaDaRaridade || listaDaRaridade.length === 0) {
                 raridadeSorteada = "Comum";
                 listaDaRaridade = ambienteAtual["Comum"];
             }
 
-            // 3. Seleciona um Pokémon aleatório
             const pokemonEscolhido = listaDaRaridade[Math.floor(Math.random() * listaDaRaridade.length)];
 
-            // 4. Exibe na tela
             const resultCard = document.getElementById('resultCard');
             const pokeImg = document.getElementById('pokeImg');
             const pokeName = document.getElementById('pokeName');
@@ -342,7 +336,7 @@
             pokeRarity.className = `rarity-badge ${classeRaridade}`;
 
             resultCard.classList.remove('active');
-            void resultCard.offsetWidth; // Força reinício da animação
+            void resultCard.offsetWidth;
             resultCard.classList.add('active');
         }
     </script>
