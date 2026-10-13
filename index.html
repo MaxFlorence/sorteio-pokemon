@@ -178,7 +178,7 @@
                     { name: "Delibird", srText: "1", srVal: 1, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/225.png" },
                     { name: "Snover", srText: "1", srVal: 1, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/459.png" },
                     { name: "Lapras", srText: "10", srVal: 10, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png" },
-                    { name: "Castform Snonwy form", srText: "5", srVal: 5, img: "https://static.wikia.nocookie.net/tofrugs-swamp/images/6/6c/Castform-Snowy.png" },
+                    { name: "Castform Snowy form", srText: "5", srVal: 5, img: "https://static.wikia.nocookie.net/tofrugs-swamp/images/6/6c/Castform-Snowy.png" },
                     { name: "Frigibax", srText: "1", srVal: 1, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/996.png" },
                     { name: "Piplup", srText: "1/2", srVal: 0.5, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/393.png" },
                     { name: "Arctozolt", srText: "9", srVal: 9, img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/881.png" },
@@ -191,18 +191,3 @@
             if (level <= 2) return 2;
             if (level <= 5) return 5;
             if (level <= 7) return 8;
-            if (level <= 10) return 10;
-            if (level <= 13) return 12;
-            if (level <= 16) return 14;
-            return 15;
-        }
-
-        function sortear() {
-            try {
-                var levelSelect = document.getElementById('trainerLevel');
-                var level = parseInt(levelSelect.value) || 1;
-                var maxSR = getMaxSR(level);
-                var envSelect = document.getElementById('environment').value;
-                var envData = database[envSelect];
-
-                if (!env
